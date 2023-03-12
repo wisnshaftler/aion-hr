@@ -11,11 +11,21 @@ class employee {
      * @returns {Array}
      */
     async find(employee = {}) {
-        const result =  await dbconnection.find("employee", employee);
+        const result = await dbconnection.find("employee", employee);
         return result;
     }
 
+    async regEmployee(empid, fname, lname, dob, joindate, status, departmentid, jobtitleid, contactno, address) {
+        dbconnection.insertOne("employee", {
+            empid, fname, lname, dob, joindate, status, departmentid, jobtitleid, contactno, address
+        })
+        return true;
+    }
 
+    async updateEmployee(empid, empData) {
+        dbconnection.updateOne("employee", { empid }, {$set: empData});
+        return true;
+    }
 }
 
 export default employee = new employee();

@@ -49,6 +49,19 @@ class validation {
         return [true, "Email is valid"];
     }
 
+    newUserValidate(fname, lname, empid, dob, joindate, departmentid, jobtitleid, contactno, address) {
+        if(!fname || !lname || !dob || !joindate || !departmentid || !jobtitleid || !contactno || !address ||
+            !Array.isArray(contactno) || !empid) {
+            return [false, "Userdata is invalid"];
+        }
+
+        if(fname == "" || lname == "" || empid == "", dob == "" || joindate == "" || departmentid == "" || jobtitleid == "" ||
+        address == "" || contactno.length == 0) {
+            return [false, "user data is invalid"];
+        }
+
+        return [true, "valid user data"];
+    }
 }
 
 export default validation = new validation();

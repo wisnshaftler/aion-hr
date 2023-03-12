@@ -24,6 +24,16 @@ class dbconnection {
         const result = await this.dbconn.collection(collectionName).aggregate(query).toArray()
         return result
     }
+
+    async insertOne(collectionName, query) {
+        const result = await this.dbconn.collection(collectionName).insertOne(query);
+        return true;
+    }
+
+    async updateOne(collectionName, searchQuery, updateQuery) {
+        const result = await this.dbconn.collection(collectionName).updateOne(searchQuery,updateQuery);
+        return true
+    }
 }
 
 export default dbconnection = new dbconnection();
