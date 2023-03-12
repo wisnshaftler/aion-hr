@@ -15,7 +15,7 @@ class employee {
         return result;
     }
 
-
+    
 }
 
 export default employee = new employee();

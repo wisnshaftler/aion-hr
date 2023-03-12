@@ -19,6 +19,11 @@ class dbconnection {
         const result = await this.dbconn.collection(collectionName).find(query).toArray();
         return result
     }
+
+    async aggregate(collectionName, query) {
+        const result = await this.dbconn.collection(collectionName).aggregate(query).toArray()
+        return result
+    }
 }
 
 export default dbconnection = new dbconnection();

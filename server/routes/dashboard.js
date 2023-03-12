@@ -18,6 +18,17 @@ dashboardRoute.get("/employee", auth.authenticateToken, async (req, res)=>{
     return res.status(200).send({ status:1, msg: "Done", data: result });
 });
 
-dashboardRoute.get
+dashboardRoute.get("/department", auth.authenticateToken, async(req, res)=> {
+    const user = req.user;
+
+    const array = ["admin", "hr"];
+    if(!array.includes(user.role)) return res.status(401).send({ status:0, msg: "unauthorized", data: {} });
+
+    const result = await dbconnection.aggregate("department")
+    res.status(200).send({ status:1, msg:"done", data:result });
+    return;
+});
+
+
 
 export default dashboardRoute;
