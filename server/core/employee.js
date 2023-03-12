@@ -11,11 +11,11 @@ class employee {
      * @returns {Array}
      */
     async find(employee = {}) {
-        const result =  await dbconnection.find("employee", {  });
+        const result =  await dbconnection.find("employee", employee);
         return result;
     }
 
-    
+
 }
 
 export default employee = new employee();
