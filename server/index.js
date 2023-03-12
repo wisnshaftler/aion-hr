@@ -3,6 +3,7 @@ import config from "./config/config.js";
 import dbconnection from "./core/dbconnection.js";
 import authRouter from "./routes/authentication.js";
 import dashboardRoute from "./routes/dashboard.js";
+import cors from "cors";
 
 class server {
     PORT ;
@@ -10,6 +11,7 @@ class server {
     constructor() {
         this.PORT =config.PORT || 5000;
         this.server = express();
+        this.server.use(cors());
         this.server.use(express.json())
     }
 
