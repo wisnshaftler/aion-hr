@@ -1,29 +1,73 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import config from "../config/Config";
+import Employee from "./Employee";
 
-const Dashboard = props=> {
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
+
+const Dashboard = (props) => {
     const navigate = useNavigate();
-    const [token, setToken] = useState(null);
+    const [empList, setEmpList] = useState([]);
+    const [deptList, setDepartment] = useState([]);
+    const [token, setToken] = useState(window.localStorage.getItem("token"));
 
-    useEffect(()=> {
-        const token = window.localStorage.getItem("token")?.trim();
-        if(token !== "" || token) {
-            setToken(token);
-        }else {
-            setToken(null);
+    useEffect(() => {
+        const localToken = window.localStorage.getItem("token");
+        if (!localToken) {
+            return navigate("/login");
+        } else {
+            setToken(localToken);
         }
-    });
 
-    if(token === null) {
-        navigate("/login");
-    }
+
+        let response = fetch(config.API + "/dashboard/employee", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": "barier " + token
+            }
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data.data);
+                setEmpList(data.data);
+            });
+
+        response = fetch(config.API + "/dashboard/department", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": "barier " + token
+            }
+        }).then(response => response.json())
+        .then(data=> {
+            setDepartment(data);
+        })
+
+    }, [])
 
     return (
-        <div className="container">
-        
-        </div>
-    );
-}
+        <div className="container" key={Math.random().toString()}>
+            <Tabs
+                defaultActiveKey="employees"
+                id="dashboard-tab"
+                className="mb-3"
+            >
+                <Tab eventKey="employees" title="Employee">
+                    <h3 key={Math.random().toString()}>Employees</h3>
+                    {
+                        empList.map(function (employee) {
+                            return <>
+                            <Employee emp={employee} />
+                            
+                            </>
+                        })
+                    }
+                </Tab>
 
+            </Tabs>
+        </div>
+    )
+}
 export default Dashboard;
