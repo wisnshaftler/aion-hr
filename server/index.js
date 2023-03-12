@@ -2,6 +2,7 @@ import express from "express";
 import config from "./config/config.js";
 import dbconnection from "./core/dbconnection.js";
 import authRouter from "./routes/authentication.js";
+import dashboardRoute from "./routes/dashboard.js";
 
 class server {
     PORT ;
@@ -24,6 +25,7 @@ class server {
 
     routes() {
         this.server.use("/auth", authRouter);
+        this.server.use("/dashboard", dashboardRoute);
     }
 
     startServer() {
