@@ -19,6 +19,19 @@ class department {
         ])
         return result;
     } 
+
+    async newDepartment(name, depheadid) {
+        const departmentJSON = {
+            name, depheadid
+        }
+        const result =  await dbconnection.insertOne("department", departmentJSON );
+        return true;
+    }
+
+    async getOneDep(name) {
+        const result = await dbconnection.find("department", { name });
+        return result;
+    }
 }
 
 export default department = new department();

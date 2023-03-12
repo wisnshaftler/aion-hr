@@ -62,6 +62,13 @@ class validation {
 
         return [true, "valid user data"];
     }
+
+    newDepValidate(departmentName, depheadid) {
+        if(departmentName == "" || !departmentName || depheadid == "" || !depheadid) {
+            return [false, "department data is incorrect"];
+        }
+        return [ true, "valid department data"];
+    }
 }
 
 export default validation = new validation();

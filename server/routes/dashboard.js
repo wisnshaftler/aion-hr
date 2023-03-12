@@ -6,6 +6,7 @@ import crypto from "crypto";
 import config from "../config/config.js";
 import employee from "../core/employee.js";
 import jobs from "../core/jobs.js";
+import department from "../core/department.js";
 
 const dashboardRoute = express.Router();
 
@@ -25,7 +26,7 @@ dashboardRoute.get("/department", auth.authenticateToken, async (req, res) => {
     const array = ["admin", "hr"];
     if (!array.includes(user.role)) return res.status(401).send({ status: 0, msg: "unauthorized", data: {} });
 
-    const result = await dbconnection.aggregate("department")
+    const result = await department.allDepWithHead();
     res.status(200).send({ status: 1, msg: "done", data: result });
     return;
 });
@@ -159,5 +160,30 @@ dashboardRoute.put("/update/employee", auth.authenticateToken, async(req, res)=>
 });
 
 
+dashboardRoute.post("/new/department", auth.authenticateToken, async(req, res)=>{
+    const user = req.user;
+    const name = req.body?.name?.trim();
+    const depheadid = req.body?.depheadid?.trim();
+
+    const array = ["admin", "hr"];
+    if (!array.includes(user.role)) return res.status(401).send({ status: 0, msg: "unauthorized", data: {} });
+
+    //validate department data
+    const isValidate = validation.newDepValidate(name, depheadid);
+    if(!isValidate[0]) {
+        return res.send({ status:0, msg: isValidate[1], msg: ""});
+    }
+
+    //check if that department is exist
+    const isAlready = await department.getOneDep(name);
+    if(isAlready.length >0) {
+        return res.send({ status:0, msg: "Department already registered", data: {} })
+    }
+
+    //add new department to the db
+    department.newDepartment(name, depheadid);
+
+    return res.send({status:1, msg: "done", data:{}});
+});
 
 export default dashboardRoute;
