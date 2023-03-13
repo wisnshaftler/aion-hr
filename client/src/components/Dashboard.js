@@ -5,13 +5,15 @@ import Employee from "./Employee";
 
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-
+import Table from 'react-bootstrap/Table';
 
 const Dashboard = (props) => {
     const navigate = useNavigate();
     const [empList, setEmpList] = useState([]);
     const [deptList, setDepartment] = useState([]);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
+
+    console.log(setToken)
 
     useEffect(() => {
         const localToken = window.localStorage.getItem("token");
@@ -30,9 +32,13 @@ const Dashboard = (props) => {
             }
         }).then(response => response.json())
             .then(data => {
-                console.log(data.data);
+                if (data.status === 0) {
+                    navigate("/login")
+                }
                 setEmpList(data.data);
-            });
+            }).catch(reason => {
+                console.log(reason)
+            })
 
         response = fetch(config.API + "/dashboard/department", {
             method: "GET",
@@ -41,9 +47,13 @@ const Dashboard = (props) => {
                 "authorization": "barier " + token
             }
         }).then(response => response.json())
-        .then(data=> {
-            setDepartment(data);
-        })
+            .then(data => {
+                if (data.status === 0) {
+                    navigate("/login")
+                }
+                console.log(data)
+                setDepartment(data);
+            })
 
     }, [])
 
@@ -56,14 +66,35 @@ const Dashboard = (props) => {
             >
                 <Tab eventKey="employees" title="Employee">
                     <h3 key={Math.random().toString()}>Employees</h3>
-                    {
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                                <th>empid</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>DOB</th>
+                                <th>Join Date</th>
+                                <th>Status</th>
+                                <th>department</th>
+                                <th>Job title</th>
+                                <th>contactno</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {
                         empList.map(function (employee) {
-                            return <>
-                            <Employee emp={employee} />
-                            
-                            </>
+                            return (                           
+                                <tr>
+                                <Employee emp={employee} />
+                                <td></td>
+                            </tr>
+                            )
                         })
                     }
+                        </tbody>
+                    </Table>
                 </Tab>
 
             </Tabs>

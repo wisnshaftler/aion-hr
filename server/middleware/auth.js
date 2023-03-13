@@ -29,10 +29,10 @@ function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(" ")[1];
 
-    if (token == null) return res.status(401).send({ status:0, msg:"unauthorized", data: {} } );
+    if (token == null) return res.status(200).send({ status:0, msg:"unauthorized", data: {} } );
 
     return jwt.verify(token, secret, (err, user) => {
-        if (err) return res.status(401).send({ status:0, msg:"unauthorized", data: {} } );
+        if (err) return res.status(200).send({ status:0, msg:"unauthorized", data: {} } );
         req.user = user;
         next();
     })
