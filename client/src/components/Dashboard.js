@@ -2,10 +2,14 @@ import React, { Component, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import config from "../config/Config";
 import Employee from "./Employee";
+import EmployeeNew from "./EmployeeNew";
 
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 
 const Dashboard = (props) => {
     const navigate = useNavigate();
@@ -57,6 +61,11 @@ const Dashboard = (props) => {
 
     }, [])
 
+
+    const updateEmployee = event => {
+        console.log(event.target)
+    }
+
     return (
         <div className="container" key={Math.random().toString()}>
             <Tabs
@@ -83,18 +92,24 @@ const Dashboard = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                        {
-                        empList.map(function (employee) {
-                            return (                           
-                                <tr>
-                                <Employee emp={employee} />
-                                <td></td>
-                            </tr>
-                            )
-                        })
-                    }
+                            {
+                                empList.map(function (employee) {
+                                    return (
+                                        <tr>
+                                            <Employee emp={employee} />
+                                            <td>
+                                                <Button variant="primary" onClick={updateEmployee} data-empid={employee._id}>Update</Button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </Table>
+
+                    <hr />
+                    <h3>New Employee</h3>
+                    <EmployeeNew department={deptList} />
                 </Tab>
 
             </Tabs>
