@@ -60,7 +60,7 @@ dashboardRoute.get("/jobs", auth.authenticateToken, async(req, res)=>{
     if (!array.includes(user.role)) return res.status(401).send({ status: 0, msg: "unauthorized", data: {} });
 
     const result = await jobs.allJobs();
-    return res.status(200).send( { status:1, msg: "done", result: result });
+    return res.status(200).send( { status:1, msg: "done", data: result });
 });
 
 dashboardRoute.post("/new/employee", auth.authenticateToken, async(req,res)=>{

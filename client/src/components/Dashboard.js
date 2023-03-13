@@ -15,6 +15,7 @@ const Dashboard = (props) => {
     const navigate = useNavigate();
     const [empList, setEmpList] = useState([]);
     const [deptList, setDepartment] = useState([]);
+    const [jobs, setJobs] = useState([]);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
 
     console.log(setToken)
@@ -56,8 +57,23 @@ const Dashboard = (props) => {
                     navigate("/login")
                 }
                 console.log(data)
-                setDepartment(data);
+                setDepartment(data.data);
             })
+
+            response = fetch(config.API + "/dashboard/jobs", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "authorization": "barier " + token
+                }
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.status === 0) {
+                        navigate("/login")
+                    }
+                    console.log(data)
+                    setJobs(data.data);
+                })
 
     }, [])
 
@@ -109,7 +125,7 @@ const Dashboard = (props) => {
 
                     <hr />
                     <h3>New Employee</h3>
-                    <EmployeeNew department={deptList} />
+                    <EmployeeNew dep={deptList} jobs={jobs}  />
                 </Tab>
 
             </Tabs>
