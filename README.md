@@ -11,4 +11,9 @@ please import that collections to your db for do test run.
 
 In the `postman` directory contains API data.
 
+Default username and password is
+
+    `wisnshaftler@gmail.com`
+    `AION_P@ssw0rd`
+
 Thanks.
