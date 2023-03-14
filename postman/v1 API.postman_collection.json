@@ -1,0 +1,365 @@
+{
+	"info": {
+		"_postman_id": "51120af4-c814-4190-a50c-a806f2e75dae",
+		"name": "v1 API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12007986"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"wisnshaftler@gmail.com\",\r\n    \"password\": \"AION_P@ssw0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/auth/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all employees",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiaHIiLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODczMDU5MywiZXhwIjoxNjc4ODE2OTkzfQ.B2fm7qmNu2DiOxq6-s5Ci9JNkqa8R_haqRwXqwR3-ic",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:4000/dashboard/employee",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all departments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODYwMTY5NywiZXhwIjoxNjc4Njg4MDk3fQ.qxhGvvyZMzBd5LE5L1vIpZvkUexPOYPQu_-fUA1GFrY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:4000/dashboard/department",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard",
+						"department"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee search by name",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODYxMjE1MCwiZXhwIjoxNjc4Njk4NTUwfQ.VjmdrpOcwRTmhD28KrGiELPfiQR5CBGtvEBtKQ89Ib0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:4000/dashboard/search/employee/name/wisn",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard",
+						"search",
+						"employee",
+						"name",
+						"wisn"
+					],
+					"query": [
+						{
+							"key": "authorization",
+							"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODYxMjE1MCwiZXhwIjoxNjc4Njk4NTUwfQ.VjmdrpOcwRTmhD28KrGiELPfiQR5CBGtvEBtKQ89Ib0",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee search by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODgxMTQxNCwiZXhwIjoxNjc4ODk3ODE0fQ.z5J3Az_IzXi1IKPIG9rEVKORyvsBRY4jb69WsoGX8lA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:4000/dashboard/search/employee/empid/emp002",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard",
+						"search",
+						"employee",
+						"empid",
+						"emp002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all jobs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODYxMjE1MCwiZXhwIjoxNjc4Njk4NTUwfQ.VjmdrpOcwRTmhD28KrGiELPfiQR5CBGtvEBtKQ89Ib0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/dashboard/jobs",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard",
+						"jobs"
+					],
+					"query": [
+						{
+							"key": "authorization",
+							"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODYxMjE1MCwiZXhwIjoxNjc4Njk4NTUwfQ.VjmdrpOcwRTmhD28KrGiELPfiQR5CBGtvEBtKQ89Ib0",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODYxMjE1MCwiZXhwIjoxNjc4Njk4NTUwfQ.VjmdrpOcwRTmhD28KrGiELPfiQR5CBGtvEBtKQ89Ib0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"empid\": \"emp004\",\r\n  \"fname\": \"wisn 2\",\r\n  \"lname\": \"shaftler 2\",\r\n  \"dob\": \"1998-02-10\",\r\n  \"joindate\": \"2020-01-11\",\r\n  \"status\": \"active\",\r\n  \"departmentid\": \"640d74c73e7078c64133de56\",\r\n  \"jobtitleid\": \"640d76da3e7078c64133de5b\",\r\n  \"contactno\": [\r\n    \"0778845758\"\r\n  ],\r\n  \"address\": \"No 123, panama, ampara\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/dashboard/new/employee",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard",
+						"new",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update employee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODYxMjE1MCwiZXhwIjoxNjc4Njk4NTUwfQ.VjmdrpOcwRTmhD28KrGiELPfiQR5CBGtvEBtKQ89Ib0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"empid\": \"emp004\",\r\n  \"fname\": \"wisn 2\",\r\n  \"lname\": \"shaftler 2\",\r\n  \"dob\": \"1998-02-10\",\r\n  \"joindate\": \"2020-01-11\",\r\n  \"status\": \"active\",\r\n  \"departmentid\": \"640d74c73e7078c64133de56\",\r\n  \"jobtitleid\": \"640d76da3e7078c64133de5b\",\r\n  \"contactno\": [\r\n    \"0778845758\"\r\n  ],\r\n  \"address\": \"No 123, panama, ampara\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/dashboard/update/employee",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard",
+						"update",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new department",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODgwMzYyNCwiZXhwIjoxNjc4ODkwMDI0fQ.2CZxyaIUzhQYOF1cy0xWV90Usbf-GlHE2eYLUunegcc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"s\",\r\n    \"depheadid\": \"emp004\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/dashboard/new/department",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard",
+						"new",
+						"department"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "barier eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Indpc25zaGFmdGxlckBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoidGVzdCBhZG1pbiIsImlhdCI6MTY3ODczMjA2OSwiZXhwIjoxNjc4ODE4NDY5fQ.Kpw2M3mwP4SzchGyU576NQ0ai0d57trQhR3vF8Nt59Y",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"wisnshaftler@gmail.com\",\r\n    \"status\": \"deactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:4000/admin/user/update",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"user",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,10 @@
+[{
+  "_id": {
+    "$oid": "640d66b53e7078c64133de52"
+  },
+  "password": "1442cb0618dad1dee277ce52cfcdc1b54d9ae610416b9d92588670935948f2e1",
+  "email": "wisnshaftler@gmail.com",
+  "status": "active",
+  "accesslevel": "admin",
+  "name": "test admin"
+}]
