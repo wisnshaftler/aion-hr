@@ -13,7 +13,7 @@ In the `postman` directory contains API data.
 
 Default username and password is
 
-    `wisnshaftler@gmail.com`
-    `AION_P@ssw0rd`
+    wisnshaftler@gmail.com
+    AION_P@ssw0rd
 
 Thanks.
