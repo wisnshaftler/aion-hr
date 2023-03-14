@@ -23,7 +23,7 @@ class employee {
     }
 
     async updateEmployee(empid, empData) {
-        dbconnection.updateOne("employee", { empid }, {$set: empData});
+        dbconnection.updateOne("employee", { empid }, {$set: empData},);
         return true;
     }
 }

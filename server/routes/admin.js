@@ -43,6 +43,28 @@ adminRouter.post("/new/user", auth.authenticateToken, async(req, res)=> {
     //add user to db
     administrator.regNewUser(email, passHash, name, accesslevel);
     return res.send({status:1, msg: "done", data:[]});
+});
+
+adminRouter.put("/user/update", auth.authenticateToken, async(req, res)=>{
+    if(req.user.role !="admin") {
+        return res.send({ status:0, msg: "unauthorized", data:[] })
+    }
+
+    const email = req.body?.email?.trim()?.toString();
+    const status = req.body?.status?.trim()?.toString();
+    const password = req?.body?.password;
+
+    //update user if password update
+    if(password) {
+        const passHash = crypto.createHash("sha256").update(config.SALT+password).digest("hex");
+        administrator.updateUser(email, {email, password:passHash});
+        return res.send({status:1, msg: "done", data:[]});
+    }
+
+    //if user only status
+    administrator.updateUser(email, {email, status});
+    return res.send({status:1, msg: "done", data:[]});
+    
 })
 
 export default adminRouter;

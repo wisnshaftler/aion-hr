@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import config from "../config/Config";
 
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-const Login = props=> {
+
+const Login = props => {
     const navigate = useNavigate();
 
-    const [ emailValue, setemailValue ] = useState();
-    const [ passwordValue, setPasswordValue ] = useState();
+    const [emailValue, setemailValue] = useState();
+    const [passwordValue, setPasswordValue] = useState();
 
-    const loginHandler = async event=>{
+    const loginHandler = async event => {
         event.preventDefault();
         const result = await fetch(config.API + "/auth/login", {
             method: "POST",
@@ -23,7 +26,7 @@ const Login = props=> {
         });
 
         const response = await result.json();
-        if(response.status === 1) {
+        if (response.status === 1) {
             window.localStorage.setItem("token", response.data.accessToken);
             window.localStorage.setItem("refreshToken", response.data.refreshToken);
             navigate("/dashboard");
@@ -32,29 +35,47 @@ const Login = props=> {
         }
     }
 
-    const emailHandler = event=> {
+    const emailHandler = event => {
         setemailValue(event.target.value);
     }
 
-    const passwordHandler = event=> {
+    const passwordHandler = event => {
         setPasswordValue(event.target.value);
     }
 
     return (
-        <>
-            <div className="loginWrapper">
-                <h1>Login</h1>
-                <form className="login-form" onSubmit={loginHandler}>
-                    <label htmlFor="#email">Email</label>
-                    <input type="text" id="email" onChange={emailHandler} name="email"/>
+        <div class="container mt-5">
+        <h2>HR </h2>
+        <Form onSubmit={loginHandler}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" id="email" onChange={emailHandler} name="email" placeholder="Enter email" />
+            </Form.Group>
 
-                    <label htmlFor="#password">Password</label>
-                    <input type="password" onChange={passwordHandler} name="password" />
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" onChange={passwordHandler} name="password" placeholder="Password" />
+            </Form.Group>
+            
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form>
+        </div>
+        // <>
+        //     <div className="loginWrapper">
+        //         <h1>Login</h1>
+        //         <form className="login-form" onSubmit={loginHandler}>
+        //             <label htmlFor="#email">Email</label>
+        //             <input type="text" id="email" onChange={emailHandler} name="email"/>
 
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-        </>
+        //             <label htmlFor="#password">Password</label>
+        //             <input type="password" onChange={passwordHandler} name="password" />
+
+        //             <button type="submit">Login</button>
+        //         </form>
+        //     </div>
+        // </>
     );
 }
 

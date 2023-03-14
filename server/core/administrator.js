@@ -21,6 +21,11 @@ class administrator {
         await dbconnection.insertOne("user", { email, password, name, accesslevel, status:"active" });
         return true;
     }
+
+    async updateUser(email, status) {
+        await dbconnection.updateOne("user", {email}, {$set: status });
+        return true
+    }
 }
 
 export default administrator = new administrator();

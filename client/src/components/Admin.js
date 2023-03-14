@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 
 import jwt_decode from "jwt-decode";
 import NewUser from "./NewUser";
+import UpdatUser from "./UpdateUser";
+import UserPassword from "./UserPassword";
 
 const Admin = (props) => {
     const navigate = useNavigate();
@@ -68,6 +70,12 @@ const Admin = (props) => {
             <hr />
             <h3>New user</h3>
             <NewUser />
+            <hr />
+            <h3>Update User</h3>
+            <UpdatUser users={users} />
+            <hr/>
+            <h3>Update user password</h3>
+            <UserPassword users={users} />
         </>
     );
 

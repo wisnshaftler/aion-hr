@@ -114,6 +114,13 @@ const Dashboard = (props) => {
         })
     }
 
+    const logoutMe = event=> {
+        
+        event.preventDefault();
+        window.localStorage.setItem("token", "");
+        navigate("/login")
+    }
+
     return (
         <div className="container" key={Math.random().toString()}>
             <Tabs
@@ -191,7 +198,7 @@ const Dashboard = (props) => {
                             <Job job={jobs} />
                         </tbody>
                     </Table>
-                    
+
                 </Tab>
 
 
@@ -205,6 +212,9 @@ const Dashboard = (props) => {
                 )
                 }
 
+                <Tab eventKey="logout" title="Logout">
+                    <button onClick={logoutMe}>Logout</button>
+                </Tab>
             </Tabs>
 
         </div>
