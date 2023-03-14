@@ -15,6 +15,7 @@ import Department from "./Department";
 import Job from "./Job";
 import Admin from "./Admin";
 import DepartmentNew from "./DepartmentNew";
+import EmployeeSearch from "./EmployeeSearch";
 
 const Dashboard = (props) => {
     const navigate = useNavigate();
@@ -165,6 +166,10 @@ const Dashboard = (props) => {
                     <hr />
                     <h3>New Employee</h3>
                     <EmployeeNew dep={deptList} jobs={jobs} />
+                </Tab>
+
+                <Tab eventKey="searchEmp" title="Search Employee">
+                    <EmployeeSearch />
                 </Tab>
 
                 <Tab eventKey="department" title="Department">

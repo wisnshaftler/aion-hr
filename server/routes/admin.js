@@ -5,6 +5,7 @@ import validation from "../core/validation.js";
 import dbconnection from "../core/dbconnection.js";
 import config from "../config/config.js";
 import crypto from "crypto";
+import logger from "../core/logger.js";
 
 const adminRouter = express.Router();
 
@@ -40,6 +41,11 @@ adminRouter.post("/new/user", auth.authenticateToken, async(req, res)=> {
     //create hashed password
     const passHash = crypto.createHash("sha256").update(config.SALT+password).digest("hex");
 
+    try {
+        logger.log(`user ${req.user.email} is created new user at ${Date.now()}. user mail is ${email}`);
+    }catch(e) {
+
+    }
     //add user to db
     administrator.regNewUser(email, passHash, name, accesslevel);
     return res.send({status:1, msg: "done", data:[]});
@@ -59,6 +65,12 @@ adminRouter.put("/user/update", auth.authenticateToken, async(req, res)=>{
         const passHash = crypto.createHash("sha256").update(config.SALT+password).digest("hex");
         administrator.updateUser(email, {email, password:passHash});
         return res.send({status:1, msg: "done", data:[]});
+    }
+
+    try {
+        logger.log(`user ${req.user.email} is update user at ${Date.now()}. user mail is ${email}`);
+    }catch(e) {
+
     }
 
     //if user only status

@@ -1,0 +1,10 @@
+[{
+  "_id": {
+    "$oid": "640d78073e7078c64133de60"
+  },
+  "empid": "",
+  "from": "2022/02/02",
+  "to": "2022/02/03",
+  "leavetype": "medical",
+  "status": "approved"
+}]

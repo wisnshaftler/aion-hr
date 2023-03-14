@@ -7,6 +7,7 @@ import config from "../config/config.js";
 import employee from "../core/employee.js";
 import jobs from "../core/jobs.js";
 import department from "../core/department.js";
+import logger from "../core/logger.js";
 
 const dashboardRoute = express.Router();
 
@@ -39,7 +40,7 @@ dashboardRoute.get("/search/employee/name/:name", auth.authenticateToken, async 
     if (!array.includes(user.role)) return res.status(401).send({ status: 0, msg: "unauthorized", data: {} });
 
     const result = await employee.find( { fname: new RegExp(name, 'g') } );
-    return res.status(201).send({ status:1, msg:"done", result: result })
+    return res.status(200).send({ status:1, msg:"done", result: result })
 });
 
 dashboardRoute.get("/search/employee/empid/:empid", auth.authenticateToken, async (req, res) => {
@@ -50,7 +51,7 @@ dashboardRoute.get("/search/employee/empid/:empid", auth.authenticateToken, asyn
     if (!array.includes(user.role)) return res.status(401).send({ status: 0, msg: "unauthorized", data: {} });
 
     const result = await employee.find( { empid: empid } );
-    return res.status(201).send({ status:1, msg:"done", result: result })
+    return res.status(200).send({ status:1, msg:"done", result: result })
 });
 
 dashboardRoute.get("/jobs", auth.authenticateToken, async(req, res)=>{
@@ -95,6 +96,12 @@ dashboardRoute.post("/new/employee", auth.authenticateToken, async(req,res)=>{
     //add new emp to db
     const result = await employee.regEmployee(empid, fname, lname, dob, joindate, "active", departmentid, jobtitleid,
     contactno, address);
+
+    try {
+        logger.log(`user ${req.user.email} is added new employee at ${Date.now()}. emp id  is ${empid}`);
+    }catch(e) {
+
+    }
 
     return res.send({ status: 1, msg: "Success", data: [] });
 });

@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "640d746e3e7078c64133de54"
+  },
+  "empid": "emp001",
+  "fname": "wisn",
+  "lname": "shaftler",
+  "dob": "1998-02-05",
+  "joindate": "2020-01-01",
+  "status": "active",
+  "departmentid": "640d74c73e7078c64133de56",
+  "jobtitleid": "640d76da3e7078c64133de5b",
+  "contactno": [
+    "0778853856",
+    "0778845785"
+  ],
+  "address": "No 123, panama, ampara",
+  "leftdate": ""
+},{
+  "_id": {
+    "$oid": "640d7e043e7078c64133de7c"
+  },
+  "empid": "emp002",
+  "fname": "dep head wisn 1",
+  "lname": "shaftler1",
+  "dob": "1998-02-05",
+  "joindate": "2022-02-02",
+  "status": "active",
+  "departmentid": "640d74c73e7078c64133de56",
+  "jobtitleid": "640d76da3e7078c64133de5b",
+  "contactno": [
+    "0778853857"
+  ],
+  "address": "No 123, panama1, ampara1"
+},{
+  "_id": {
+    "$oid": "640da2ed6a56cc153b352e21"
+  },
+  "empid": "emp004",
+  "fname": "alas 2",
+  "lname": "shaftler 2",
+  "dob": "1998-02-10",
+  "joindate": "2020-01-11",
+  "status": "active",
+  "departmentid": "640d74c73e7078c64133de56",
+  "jobtitleid": "640d76da3e7078c64133de5b",
+  "contactno": [
+    "0778845758"
+  ],
+  "address": "No 123, panama, ampara"
+},{
+  "_id": {
+    "$oid": "640f57e129a69a2be1bd6529"
+  },
+  "empid": "emp005",
+  "fname": "mark",
+  "lname": "henry",
+  "dob": "1998-02-05",
+  "joindate": "2022-03-03",
+  "status": "active",
+  "departmentid": "640d74c73e7078c64133de56",
+  "jobtitleid": "640d76da3e7078c64133de5b",
+  "contactno": [
+    "2778856859"
+  ],
+  "address": "38/4A Dewala Road Nedurupitiya"
+}]

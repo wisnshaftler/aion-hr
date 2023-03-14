@@ -1,0 +1,13 @@
+[{
+  "_id": {
+    "$oid": "640d74c73e7078c64133de56"
+  },
+  "name": "IT dept",
+  "depheadid": "emp001"
+},{
+  "_id": {
+    "$oid": "640d80933e7078c64133de7e"
+  },
+  "name": "maintanace",
+  "depheadid": "emp002"
+}]

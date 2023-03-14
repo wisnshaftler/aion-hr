@@ -4,6 +4,7 @@ import auth from "../middleware/auth.js";
 import validation from "../core/validation.js";
 import crypto from "crypto";
 import config from "../config/config.js";
+import logger from "../core/logger.js";
 
 const authRouter = express.Router();
 
@@ -25,6 +26,7 @@ authRouter.post("/login", async (req, res)=> {
     const accessToken = auth.generateAccessToken({ email, role: dbResult[0].accesslevel, name: dbResult[0].name });
     const refreshToken = auth.generateRefreshToken({ email, role: dbResult[0].accesslevel, name: dbResult[0].name });
 
+    logger.log(`user ${email} is logged in now ${Date.now()}`);
     return res.status(200).send({ status:1, msg:"Success", data: {
         accessToken: accessToken[1],
         refreshToken: refreshToken[1]
