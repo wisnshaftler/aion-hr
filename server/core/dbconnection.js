@@ -20,6 +20,10 @@ class dbconnection {
         return result
     }
 
+    async findWithProjection(collectionName, query, projection) {
+        const result = await this.dbconn.collection(collectionName).find(query, projection).toArray();
+        return result
+    }
     async aggregate(collectionName, query) {
         const result = await this.dbconn.collection(collectionName).aggregate(query).toArray()
         return result

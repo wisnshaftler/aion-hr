@@ -4,6 +4,7 @@ import dbconnection from "./core/dbconnection.js";
 import authRouter from "./routes/authentication.js";
 import dashboardRoute from "./routes/dashboard.js";
 import cors from "cors";
+import adminRouter from "./routes/admin.js";
 
 class server {
     PORT ;
@@ -28,6 +29,7 @@ class server {
     routes() {
         this.server.use("/auth", authRouter);
         this.server.use("/dashboard", dashboardRoute);
+        this.server.use("/admin", adminRouter)
     }
 
     startServer() {

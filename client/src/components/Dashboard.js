@@ -8,8 +8,13 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import jwt_decode from "jwt-decode";
 
+import Form from 'react-bootstrap/Form';
+import Department from "./Department";
+import Job from "./Job";
+import Admin from "./Admin";
+import DepartmentNew from "./DepartmentNew";
 
 const Dashboard = (props) => {
     const navigate = useNavigate();
@@ -17,8 +22,7 @@ const Dashboard = (props) => {
     const [deptList, setDepartment] = useState([]);
     const [jobs, setJobs] = useState([]);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
-
-    console.log(setToken)
+    const [decodeToken, setDecodeToken] = useState([]);
 
     useEffect(() => {
         const localToken = window.localStorage.getItem("token");
@@ -26,6 +30,7 @@ const Dashboard = (props) => {
             return navigate("/login");
         } else {
             setToken(localToken);
+            setDecodeToken(jwt_decode(window.localStorage.getItem("token")));
         }
 
 
@@ -60,26 +65,53 @@ const Dashboard = (props) => {
                 setDepartment(data.data);
             })
 
-            response = fetch(config.API + "/dashboard/jobs", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization": "barier " + token
+        response = fetch(config.API + "/dashboard/jobs", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": "barier " + token
+            }
+        }).then(response => response.json())
+            .then(data => {
+                if (data.status === 0) {
+                    navigate("/login")
                 }
-            }).then(response => response.json())
-                .then(data => {
-                    if (data.status === 0) {
-                        navigate("/login")
-                    }
-                    console.log(data)
-                    setJobs(data.data);
-                })
+                console.log(data)
+                setJobs(data.data);
+            })
 
     }, [])
 
 
     const updateEmployee = event => {
-        console.log(event.target)
+        const empid = event.target.dataset.empid;
+        
+        //get all elements
+        const allInputs = document.querySelectorAll(`[data-emp="${empid}"]`);
+        const employee = {}
+        for(let i = 0; i< allInputs.length; i++){
+            const emp = allInputs[i];
+            const key = emp.dataset.attrType;
+            const value = emp.value;
+            if(key == "contactno") {
+                employee[key] = value.split(",")
+                continue;
+            }
+            employee[key] = value
+        }
+        fetch(config.API + "/dashboard/update/employee", {
+            method:"PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": "barier " + token
+            },
+            body:JSON.stringify(employee)
+        })
+        .then(resp=> resp.json())
+        .then(data=>{
+            alert("done");
+            navigate("/dashboard")
+        })
     }
 
     return (
@@ -87,10 +119,10 @@ const Dashboard = (props) => {
             <Tabs
                 defaultActiveKey="employees"
                 id="dashboard-tab"
-                className="mb-3"
-            >
+                className="mb-3">
+
                 <Tab eventKey="employees" title="Employee">
-                    <h3 key={Math.random().toString()}>Employees</h3>
+                    <h3 key={Math.random().toString()}>Employees </h3>
                     <Table striped bordered hover variant="dark">
                         <thead>
                             <tr>
@@ -125,10 +157,55 @@ const Dashboard = (props) => {
 
                     <hr />
                     <h3>New Employee</h3>
-                    <EmployeeNew dep={deptList} jobs={jobs}  />
+                    <EmployeeNew dep={deptList} jobs={jobs} />
                 </Tab>
 
+                <Tab eventKey="department" title="Department">
+                    <h3>Department</h3>
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                                <th>Department Id</th>
+                                <th>Department Name</th>
+                                <th>Department Head</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <Department dep={deptList} />
+                        </tbody>
+                    </Table>
+                    <DepartmentNew emp={empList} />
+                </Tab>
+
+                <Tab eventKey="jobs" title="Jobs">
+                    <h3>Jobs</h3>
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                                <th>JOB Id</th>
+                                <th>Job Name</th>
+                                <th>Job Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <Job job={jobs} />
+                        </tbody>
+                    </Table>
+                </Tab>
+
+
+
+                {decodeToken.role === "admin" ? (
+                    <Tab eventKey="admin" title="admin">
+                        <Admin />
+                    </Tab>
+                ) : (
+                    <></>
+                )
+                }
+
             </Tabs>
+
         </div>
     )
 }

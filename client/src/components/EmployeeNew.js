@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 const EmployeeNew = ({ dep, jobs }) => {
+    const navigate = useNavigate();
 
     const [token, setToken] = useState(window.localStorage.getItem("token"));
 
@@ -42,7 +43,14 @@ const EmployeeNew = ({ dep, jobs }) => {
             body: JSON.stringify(newEmp)
         }).then(response => response.json())
         .then(data=> {
-            console.log(data)
+            if(data.status == 1) {
+                alert("Done");
+                navigate("/dashboard")
+                return;
+            } else {
+                alert("something went wrong. Please try again");
+                return
+            }
         })
     }
 
@@ -121,7 +129,7 @@ const EmployeeNew = ({ dep, jobs }) => {
                 <Form.Control type="text" id="address" placeholder="Address" />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" >
                 Submit
             </Button>
         </Form>
