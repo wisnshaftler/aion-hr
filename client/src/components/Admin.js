@@ -64,6 +64,7 @@ const Admin = (props) => {
                     }
                 </tbody>
             </Table>
+            
         </>
     );
 

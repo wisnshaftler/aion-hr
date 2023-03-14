@@ -16,6 +16,11 @@ class administrator {
         } });
         return result;
     }
+
+    async regNewUser(email, password, name, accesslevel ) {
+        await dbconnection.insertOne("user", { email, password, name, accesslevel, status:"active" });
+        return true;
+    }
 }
 
 export default administrator = new administrator();

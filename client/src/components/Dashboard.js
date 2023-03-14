@@ -191,6 +191,7 @@ const Dashboard = (props) => {
                             <Job job={jobs} />
                         </tbody>
                     </Table>
+                    
                 </Tab>
 
 

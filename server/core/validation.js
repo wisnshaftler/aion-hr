@@ -69,6 +69,38 @@ class validation {
         }
         return [ true, "valid department data"];
     }
+
+    newDashboardUserValidate(email, password, name, accesslevel) {
+        const validAccessLevels = ["admin", "hr"];
+        if(!email || !password || !name || !accesslevel) {
+            return [false, "user data invalid"];
+        }
+        if(email == "" || password == "" || name == "" || accesslevel == "") {
+            return [false, "user data invalid"];
+        } 
+        if(!validAccessLevels.includes(accesslevel) ) {
+            return [false, "invalid access level"];
+        }
+
+        //check email 
+        if(!this.emailCheck(email)[0]) return [false, "email is invalid"];
+
+        //check password
+        if (password.length < 8) {
+            return [false, "Password is invalid"];
+        }
+
+        const strength = password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+        if(!strength ) {
+            return [false, "Password strength is weak"];
+        }
+
+        if(name.trim() == "") {
+            return[false, "name is incorrect"]
+        }
+        
+        return [true, "perfect"];
+    }
 }
 
 export default validation = new validation();

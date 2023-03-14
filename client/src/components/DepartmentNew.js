@@ -47,7 +47,8 @@ const DepartmentNew = ({ emp }) => {
         })
     }
 
-    return (<Form onSubmit={newDepartment}>
+    return (
+    <Form onSubmit={newDepartment}>
 
 
         <Form.Group className="mb-3" >
