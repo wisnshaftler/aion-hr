@@ -6,6 +6,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 import jwt_decode from "jwt-decode";
+import NewUser from "./NewUser";
 
 const Admin = (props) => {
     const navigate = useNavigate();
@@ -64,7 +65,9 @@ const Admin = (props) => {
                     }
                 </tbody>
             </Table>
-            
+            <hr />
+            <h3>New user</h3>
+            <NewUser />
         </>
     );
 
