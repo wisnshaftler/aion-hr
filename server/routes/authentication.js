@@ -13,7 +13,14 @@ authRouter.post("/login", async (req, res)=> {
     const password = req.body?.password;
 
     const isValid = validation.credentialCheck(email, password);
-    if(!isValid) return res.status(401).send({ status:0, msg: "Email or password is incorrect", data: {} });
+    if(!isValid) {
+        try {
+            logger.log(`invalid credential login attempt detected email is ${email} and password is ${password}`);
+        }catch(e) {
+    
+        }
+        return res.status(401).send({ status:0, msg: "Email or password is incorrect", data: {} });
+    }
     
     const passHash = crypto.createHash("sha256").update(config.SALT+password).digest("hex");
 
