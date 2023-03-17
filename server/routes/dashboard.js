@@ -195,7 +195,11 @@ dashboardRoute.post("/new/department", auth.authenticateToken, async(req, res)=>
 
     //add new department to the db
     department.newDepartment(name, depheadid);
+    try {
+        logger.log(`user ${req.user.email} is created new department ${Date.now()}. dep name is ${name}`);
+    }catch(e) {
 
+    }
 
     return res.send({status:1, msg: "done", data:{}});
 });
