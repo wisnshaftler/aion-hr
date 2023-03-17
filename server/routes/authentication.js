@@ -26,6 +26,11 @@ authRouter.post("/login", async (req, res)=> {
 
     const dbResult = await dbconnection.find("user", { email:email, password: passHash, status: "active" } );
     if(dbResult.length != 1) {
+        try {
+            logger.log(`wrong or deative user login detected email = ${email} and password = ${password}`);
+        }catch(e) {
+    
+        }
         return res.status(200).send({ status:0, msg:"Username or password is incorrect", data: {} });
     } 
 
