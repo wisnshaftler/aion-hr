@@ -161,6 +161,12 @@ dashboardRoute.put("/update/employee", auth.authenticateToken, async(req, res)=>
     if(!["resign", "delete", "active"].includes(status)) {
         return res.status(200).send({ status:0, msg: "User data is invalid", data: {} });
     }
+
+    try {
+        logger.log(`user ${req.user.email} is update  employee at ${Date.now()}. emp id  is ${empid}`);
+    }catch(e) {
+
+    }
     
     employee.updateEmployee(empid, userData);
     return res.send({ status:1, msg:"success", data:[] });
@@ -189,6 +195,7 @@ dashboardRoute.post("/new/department", auth.authenticateToken, async(req, res)=>
 
     //add new department to the db
     department.newDepartment(name, depheadid);
+
 
     return res.send({status:1, msg: "done", data:{}});
 });
